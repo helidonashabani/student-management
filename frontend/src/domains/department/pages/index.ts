@@ -1,2 +1,2 @@
-export * from './edit-payment-page';
-export * from './list/list-payments-page';
+export * from './edit-department-page';
+export * from './list/list-departments-page';

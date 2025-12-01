@@ -136,7 +136,7 @@ src/
 
 ### Staff Management
 - Employee profile management
-- payment assignment
+- Department assignment
 - Role and permission management
 - Staff directory
 

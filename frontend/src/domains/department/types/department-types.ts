@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { paymentSchema } from './payment-schema';
+import { DepartmentSchema } from './department-schema';
 
-export type paymentForm = z.infer<typeof paymentSchema>;
-export type paymentFormWithId = paymentForm & { id: number };
-export type paymentData = {
-  payments: paymentFormWithId[];
+export type DepartmentForm = z.infer<typeof DepartmentSchema>;
+export type DepartmentFormWithId = DepartmentForm & { id: number };
+export type DepartmentData = {
+  departments: DepartmentFormWithId[];
 };

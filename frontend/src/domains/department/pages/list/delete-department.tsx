@@ -6,18 +6,18 @@ import { SerializedError } from '@reduxjs/toolkit';
 
 import { getErrorMsg } from '@/utils/helpers/get-error-message';
 import { DialogModal } from '@/components/dialog-modal';
-import { useDeletepaymentMutation } from '../../api';
+import { useDeleteDepartmentMutation } from '../../api';
 
-type DeletepaymentProps = {
+type DeleteDepartmentProps = {
   closeModal: () => void;
-  paymentId: number;
+  departmentId: number;
 };
-export const Deletepayment: React.FC<DeletepaymentProps> = ({ paymentId, closeModal }) => {
-  const [deletepayment, { isLoading: isDeletingpayment }] = useDeletepaymentMutation();
+export const DeleteDepartment: React.FC<DeleteDepartmentProps> = ({ departmentId, closeModal }) => {
+  const [deleteDepartment, { isLoading: isDeletingDepartment }] = useDeleteDepartmentMutation();
 
   const onSave = async () => {
     try {
-      const result = await deletepayment(paymentId).unwrap();
+      const result = await deleteDepartment(departmentId).unwrap();
       toast.info(result.message);
       closeModal();
     } catch (error) {
@@ -27,15 +27,15 @@ export const Deletepayment: React.FC<DeletepaymentProps> = ({ paymentId, closeMo
 
   return (
     <DialogModal
-      isSaving={isDeletingpayment}
+      isSaving={isDeletingDepartment}
       actionFooterCancelText='No'
       actionFooterSaveText='Yes'
       isOpen={true}
       closeModal={closeModal}
       handleSave={onSave}
-      titleText='Delete payment'
+      titleText='Delete Department'
     >
-      <Typography variant='body1'>Are you sure you want to delete this payment?</Typography>
+      <Typography variant='body1'>Are you sure you want to delete this department?</Typography>
     </DialogModal>
   );
 };

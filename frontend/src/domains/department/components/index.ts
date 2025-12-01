@@ -1,1 +1,1 @@
-export * from './manage-payment';
+export * from './manage-department';

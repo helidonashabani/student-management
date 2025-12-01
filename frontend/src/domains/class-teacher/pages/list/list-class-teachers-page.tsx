@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { PageContentHeader } from '@/components/page-content-header';
 import { ClassTeacherProps, ClassTeacherSchema } from '@/domains/class/types';
 import { ManageClassTeacher } from '../../components';
-import { ClassTeacherData } from './market-data';
+import { ClassTeacherData } from './class-teacher-data';
 
 const initialState = {
   class: '',

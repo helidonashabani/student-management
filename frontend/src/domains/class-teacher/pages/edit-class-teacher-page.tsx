@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { getErrorMsg } from '@/utils/helpers/get-error-message';
 import { ClassTeacherProps, ClassTeacherSchema } from '@/domains/class/types';
 import { ManageClassTeacher } from '../components';
-import { useGetClassTeacherDetailQuery } from '../api/market-api';
+import { useGetClassTeacherDetailQuery } from '../api/class-teacher-api';
 
 const initialState = {
   class: '',

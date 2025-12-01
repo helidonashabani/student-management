@@ -8,18 +8,18 @@ import { LoadingButton } from '@mui/lab';
 import { useNavigate } from 'react-router-dom';
 
 import { getErrorMsg } from '@/utils/helpers/get-error-message';
-import { paymentForm } from '../types';
-import { useAddNewpaymentMutation, useUpdatepaymentMutation } from '../api';
+import { DepartmentForm } from '../types';
+import { useAddNewDepartmentMutation, useUpdateDepartmentMutation } from '../api';
 
-type ManagepaymentProps = {
+type ManageDepartmentProps = {
   id?: number;
   operation: 'Add' | 'Edit';
-  methods: UseFormReturn<paymentForm>;
+  methods: UseFormReturn<DepartmentForm>;
 };
 
-export const Managepayment: React.FC<ManagepaymentProps> = ({ id, operation, methods }) => {
-  const [addNewpayment, { isLoading: isAddingpayment }] = useAddNewpaymentMutation();
-  const [updatepayment, { isLoading: isUpdatingpayment }] = useUpdatepaymentMutation();
+export const ManageDepartment: React.FC<ManageDepartmentProps> = ({ id, operation, methods }) => {
+  const [addNewDepartment, { isLoading: isAddingDepartment }] = useAddNewDepartmentMutation();
+  const [updateDepartment, { isLoading: isUpdatingDepartment }] = useUpdateDepartmentMutation();
   const navigate = useNavigate();
   const {
     register,
@@ -28,17 +28,17 @@ export const Managepayment: React.FC<ManagepaymentProps> = ({ id, operation, met
     reset
   } = methods;
 
-  const handleSave = async (data: paymentForm) => {
+  const handleSave = async (data: DepartmentForm) => {
     try {
       const { name } = data;
       const result =
         operation === 'Add'
-          ? await addNewpayment({ name }).unwrap()
-          : await updatepayment({ id: id!, name }).unwrap();
+          ? await addNewDepartment({ name }).unwrap()
+          : await updateDepartment({ id: id!, name }).unwrap();
 
       reset();
       toast.info(result?.message);
-      navigate('/app/payments');
+      navigate('/app/departments');
     } catch (error) {
       toast.error(getErrorMsg(error as FetchBaseQueryError | SerializedError).message);
     }
@@ -48,12 +48,12 @@ export const Managepayment: React.FC<ManagepaymentProps> = ({ id, operation, met
     <Box component={Paper} sx={{ p: 2 }}>
       <Typography variant='subtitle1' sx={{ mb: 3 }}>
         {' '}
-        {operation} payment{' '}
+        {operation} Department{' '}
       </Typography>
       <form onSubmit={handleSubmit(handleSave)}>
         <TextField
           {...register('name')}
-          label='payment Name'
+          label='Department Name'
           fullWidth
           focused
           size='small'
@@ -67,7 +67,7 @@ export const Managepayment: React.FC<ManagepaymentProps> = ({ id, operation, met
             size='small'
             variant='contained'
             sx={{ mt: 4 }}
-            loading={isAddingpayment || isUpdatingpayment}
+            loading={isAddingDepartment || isUpdatingDepartment}
           >
             Save
           </LoadingButton>

@@ -1,1 +1,1 @@
-export * from './market-api';
+export * from './class-teacher-api';

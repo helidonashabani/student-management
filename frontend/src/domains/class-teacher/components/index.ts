@@ -1,1 +1,1 @@
-export * from './manage-market';
+export * from './manage-class-teacher';

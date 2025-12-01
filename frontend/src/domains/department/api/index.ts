@@ -1,1 +1,1 @@
-export * from './payment-api';
+export * from './department-api';

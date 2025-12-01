@@ -27,7 +27,7 @@ import {
   useAddClassTeacherMutation,
   useLazyGetTeachersQuery,
   useUpdateClassTeacherMutation
-} from '../api/market-api';
+} from '../api/class-teacher-api';
 import { useGetSectionsQuery } from '@/domains/section/api';
 
 type ManageClassTeacherProps = {
@@ -79,7 +79,7 @@ export const ManageClassTeacher: React.FC<ManageClassTeacherProps> = ({
           : await updateClassTeacher({ id: id!, ...data }).unwrap();
 
       toast.info(result.message);
-      navigate('/app/markets');
+      navigate('/app/class-teachers');
       reset();
     } catch (error) {
       toast.error(getErrorMsg(error as FetchBaseQueryError | SerializedError).message);

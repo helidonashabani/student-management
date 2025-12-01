@@ -9,14 +9,14 @@ import {
 export const classTeacherApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getClassTeachers: builder.query<ClassTeacherData, void>({
-      query: () => `/markets`,
+      query: () => `/class-teachers`,
       providesTags: (result) =>
         result?.classTeachers?.map(({ id }) => {
           return { type: Tag.CLASS_TEACHERS, id };
         }) || [{ type: Tag.CLASS_TEACHERS }]
     }),
     getClassTeacherDetail: builder.query<ClassTeacherPropsWithId, string | undefined>({
-      query: (id) => `/markets/${id}`,
+      query: (id) => `/class-teachers/${id}`,
       providesTags: (result) => (result ? [{ type: Tag.CLASS_TEACHERS, id: result.id }] : [])
     }),
     getTeachers: builder.query<TeachersData, void>({
@@ -24,7 +24,7 @@ export const classTeacherApi = api.injectEndpoints({
     }),
     addClassTeacher: builder.mutation<{ message: string }, ClassTeacherProps>({
       query: (payload) => ({
-        url: `/markets`,
+        url: `/class-teachers`,
         method: 'POST',
         body: payload
       }),
@@ -32,7 +32,7 @@ export const classTeacherApi = api.injectEndpoints({
     }),
     updateClassTeacher: builder.mutation<{ message: string }, ClassTeacherPropsWithId>({
       query: ({ id, ...payload }) => ({
-        url: `/markets/${id}`,
+        url: `/class-teachers/${id}`,
         method: 'PUT',
         body: payload
       }),

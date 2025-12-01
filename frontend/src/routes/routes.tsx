@@ -7,7 +7,7 @@ import { LoginPage, SetupPasswordPage } from '@/domains/auth/pages';
 import { DashboardPage } from '@/domains/dashboard/pages';
 import { LeaveDefine, MyLeaveRequest, PendingRequest } from '@/domains/leave/pages';
 import { EditClass, ListClasses } from '@/domains/class/pages';
-import { EditClassTeacher, ListClassTeachers } from '@/domains/market/pages';
+import { EditClassTeacher, ListClassTeachers } from '@/domains/class-teacher/pages';
 import { AddStudent, EditStudent, ListStudents, ViewStudent } from '@/domains/student/pages';
 import {
   AddNotice,
@@ -21,7 +21,7 @@ import {
 import { AddStaff, EditStaff, ListStaffs, ViewStaff } from '@/domains/staff/pages';
 import { AccountPage } from '@/domains/account/pages';
 import { EditSectionPage, ListSectionPage } from '@/domains/section/pages';
-import { EditpaymentPage, ListpaymentsPage } from '@/domains/payment/pages';
+import { EditDepartmentPage, ListDepartmentsPage } from '@/domains/department/pages';
 import { ErrorPage, NotFound } from '@/components/errors';
 import { MainLayout } from '@/components/layout';
 import { RoleAndPermission } from '@/domains/role-and-permission/pages';
@@ -61,8 +61,8 @@ export const routes = [
       { path: 'leave/pending', element: <PendingRequest /> },
       { path: 'classes', element: <ListClasses /> },
       { path: 'classes/edit/:id', element: <EditClass /> },
-      { path: 'markets', element: <ListClassTeachers /> },
-      { path: 'markets/edit/:id', element: <EditClassTeacher /> },
+      { path: 'class-teachers', element: <ListClassTeachers /> },
+      { path: 'class-teachers/edit/:id', element: <EditClassTeacher /> },
       { path: 'sections', element: <ListSectionPage /> },
       { path: 'sections/edit/:id', element: <EditSectionPage /> },
       { path: 'students', element: <ListStudents /> },
@@ -79,8 +79,8 @@ export const routes = [
       { path: 'staffs/:id', element: <ViewStaff /> },
       { path: 'staffs/edit/:id', element: <EditStaff /> },
       { path: 'roles-and-permissions', element: <RoleAndPermission /> },
-      { path: 'payments', element: <ListpaymentsPage /> },
-      { path: 'payments/edit/:id', element: <EditpaymentPage /> },
+      { path: 'departments', element: <ListDepartmentsPage /> },
+      { path: 'departments/edit/:id', element: <EditDepartmentPage /> },
       { path: 'notices/recipients', element: <ListNoticeRecipients /> },
       { path: 'notices/recipients/edit/:id', element: <EditNoticeRecipientPage /> },
       { path: '*', element: <NotFound /> }

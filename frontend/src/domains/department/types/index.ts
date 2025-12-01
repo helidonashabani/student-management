@@ -1,2 +1,2 @@
-export * from './payment-schema';
-export * from './payment-types';
+export * from './department-schema';
+export * from './department-types';

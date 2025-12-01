@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { MaterialReactTable, MRT_ColumnDef, useMaterialReactTable } from 'material-react-table';
 
 import { getErrorMsg } from '@/utils/helpers/get-error-message';
-import { useGetClassTeachersQuery } from '../../api/market-api';
+import { useGetClassTeachersQuery } from '../../api/class-teacher-api';
 import { ClassTeacherDetail } from '@/domains/class/types';
 
 export const ClassTeacherData = () => {
@@ -45,7 +45,7 @@ export const ClassTeacherData = () => {
         title='Edit class'
         color='info'
         component={Link}
-        to={`/app/markets/edit/${row.original.id}`}
+        to={`/app/class-teachers/edit/${row.original.id}`}
       >
         <Edit />
       </IconButton>

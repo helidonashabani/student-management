@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 import { MaterialReactTable, MRT_ColumnDef, useMaterialReactTable } from 'material-react-table';
 
 import { getErrorMsg } from '@/utils/helpers/get-error-message';
-import { useGetpaymentsQuery } from '../../api';
-import { paymentFormWithId } from '../../types';
-import { Deletepayment } from './delete-payment';
+import { useGetDepartmentsQuery } from '../../api';
+import { DepartmentFormWithId } from '../../types';
+import { DeleteDepartment } from './delete-department';
 
-export const paymentData = () => {
+export const DepartmentData = () => {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
-  const [paymentId, setpaymentId] = React.useState<number>(0);
-  const { data, isLoading, isError, error } = useGetpaymentsQuery();
+  const [departmentId, setDepartmentId] = React.useState<number>(0);
+  const { data, isLoading, isError, error } = useGetDepartmentsQuery();
 
-  const columns: MRT_ColumnDef<paymentFormWithId>[] = [
+  const columns: MRT_ColumnDef<DepartmentFormWithId>[] = [
     {
       accessorKey: 'id',
       header: 'ID'
@@ -26,7 +26,7 @@ export const paymentData = () => {
   ];
 
   const onBtnClick = (id: number) => {
-    setpaymentId(id);
+    setDepartmentId(id);
     setIsModalOpen(true);
   };
   const closeModal = () => {
@@ -34,7 +34,7 @@ export const paymentData = () => {
   };
 
   const table = useMaterialReactTable({
-    data: isError ? [] : data?.payments || [],
+    data: isError ? [] : data?.departments || [],
     columns,
     state: {
       isLoading,
@@ -54,7 +54,7 @@ export const paymentData = () => {
             title='Edit class'
             color='info'
             component={Link}
-            to={`/app/payments/edit/${id}`}
+            to={`/app/departments/edit/${id}`}
           >
             <Edit />
           </IconButton>
@@ -76,7 +76,7 @@ export const paymentData = () => {
         <MaterialReactTable table={table} />
       </Box>
 
-      {isModalOpen && <Deletepayment paymentId={paymentId} closeModal={closeModal} />}
+      {isModalOpen && <DeleteDepartment departmentId={departmentId} closeModal={closeModal} />}
     </>
   );
 };

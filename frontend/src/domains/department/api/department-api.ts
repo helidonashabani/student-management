@@ -1,50 +1,50 @@
 import { api, Tag } from '@/api';
 
-import { paymentData, paymentForm, paymentFormWithId } from '../types';
+import { DepartmentData, DepartmentForm, DepartmentFormWithId } from '../types';
 
-const paymentApi = api.injectEndpoints({
+const departmentApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getpayments: builder.query<paymentData, void>({
-      query: () => `/payments`,
+    getDepartments: builder.query<DepartmentData, void>({
+      query: () => `/departments`,
       providesTags: (result) =>
-        result?.payments?.map(({ id }) => {
-          return { type: Tag.paymentS, id };
-        }) || [{ type: Tag.paymentS }]
+        result?.departments?.map(({ id }) => {
+          return { type: Tag.DEPARTMENTS, id };
+        }) || [{ type: Tag.DEPARTMENTS }]
     }),
-    addNewpayment: builder.mutation<{ message: string }, paymentForm>({
+    addNewDepartment: builder.mutation<{ message: string }, DepartmentForm>({
       query: ({ name }) => ({
-        url: `/payments`,
+        url: `/departments`,
         method: 'POST',
         body: { name }
       }),
-      invalidatesTags: (result) => (result ? [Tag.paymentS] : [])
+      invalidatesTags: (result) => (result ? [Tag.DEPARTMENTS] : [])
     }),
-    getpayment: builder.query<paymentFormWithId, number>({
-      query: (id) => `payments/${id}`,
-      providesTags: (result) => (result ? [{ type: Tag.paymentS, id: result.id }] : [])
+    getDepartment: builder.query<DepartmentFormWithId, number>({
+      query: (id) => `departments/${id}`,
+      providesTags: (result) => (result ? [{ type: Tag.DEPARTMENTS, id: result.id }] : [])
     }),
-    updatepayment: builder.mutation<{ message: string }, paymentFormWithId>({
+    updateDepartment: builder.mutation<{ message: string }, DepartmentFormWithId>({
       query: ({ id, name }) => ({
-        url: `/payments/${id}`,
+        url: `/departments/${id}`,
         method: 'PUT',
         body: { name }
       }),
-      invalidatesTags: (result, _error, { id }) => (result ? [{ type: Tag.paymentS, id }] : [])
+      invalidatesTags: (result, _error, { id }) => (result ? [{ type: Tag.DEPARTMENTS, id }] : [])
     }),
-    deletepayment: builder.mutation<{ message: string }, number>({
+    deleteDepartment: builder.mutation<{ message: string }, number>({
       query: (id) => ({
-        url: `/payments/${id}`,
+        url: `/departments/${id}`,
         method: 'DELETE'
       }),
-      invalidatesTags: (result) => (result ? [Tag.paymentS] : [])
+      invalidatesTags: (result) => (result ? [Tag.DEPARTMENTS] : [])
     })
   })
 });
 
 export const {
-  useGetpaymentsQuery,
-  useGetpaymentQuery,
-  useUpdatepaymentMutation,
-  useDeletepaymentMutation,
-  useAddNewpaymentMutation
-} = paymentApi;
+  useGetDepartmentsQuery,
+  useGetDepartmentQuery,
+  useUpdateDepartmentMutation,
+  useDeleteDepartmentMutation,
+  useAddNewDepartmentMutation
+} = departmentApi;

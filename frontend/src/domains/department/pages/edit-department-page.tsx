@@ -5,35 +5,35 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { getErrorMsg } from '@/utils/helpers/get-error-message';
-import { Managepayment } from '../components';
-import { useGetpaymentQuery } from '../api';
-import { paymentForm, paymentSchema } from '../types';
+import { ManageDepartment } from '../components';
+import { useGetDepartmentQuery } from '../api';
+import { DepartmentForm, DepartmentSchema } from '../types';
 
-export const EditpaymentPage = () => {
+export const EditDepartmentPage = () => {
   const { id } = useParams();
-  const { data: paymentDetail, isLoading, isError, error } = useGetpaymentQuery(Number(id));
+  const { data: departmentDetail, isLoading, isError, error } = useGetDepartmentQuery(Number(id));
 
-  const methods = useForm<paymentForm>({
+  const methods = useForm<DepartmentForm>({
     defaultValues: { name: '' },
-    resolver: zodResolver(paymentSchema)
+    resolver: zodResolver(DepartmentSchema)
   });
 
   React.useEffect(() => {
-    if (paymentDetail) {
-      const { name } = paymentDetail;
+    if (departmentDetail) {
+      const { name } = departmentDetail;
       methods.setValue('name', name);
     }
-  }, [paymentDetail, methods]);
+  }, [departmentDetail, methods]);
 
   let content: React.ReactNode | null = null;
   if (isLoading) {
     content = <>loading...</>;
   } else if (isError) {
     content = <>{getErrorMsg(error)}</>;
-  } else if (!paymentDetail) {
+  } else if (!departmentDetail) {
     content = <>Record not found</>;
   } else {
-    content = <Managepayment operation='Edit' id={Number(id)} methods={methods} />;
+    content = <ManageDepartment operation='Edit' id={Number(id)} methods={methods} />;
   }
 
   return (

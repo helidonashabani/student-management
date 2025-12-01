@@ -4,25 +4,25 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { PageContentHeader } from '@/components/page-content-header';
-import { paymentForm, paymentSchema } from '../../types';
-import { Managepayment } from '../../components';
-import { paymentData } from './payment-data';
+import { DepartmentForm, DepartmentSchema } from '../../types';
+import { ManageDepartment } from '../../components';
+import { DepartmentData } from './department-data';
 
-export const ListpaymentsPage = () => {
-  const methods = useForm<paymentForm>({
+export const ListDepartmentsPage = () => {
+  const methods = useForm<DepartmentForm>({
     defaultValues: { name: '' },
-    resolver: zodResolver(paymentSchema)
+    resolver: zodResolver(DepartmentSchema)
   });
 
   return (
     <>
-      <PageContentHeader icon={<Info sx={{ mr: 1 }} />} heading='payment Information' />
+      <PageContentHeader icon={<Info sx={{ mr: 1 }} />} heading='Department Information' />
       <Grid2 container columnSpacing={5} rowSpacing={2}>
         <Grid2 size={{ xs: 12, md: 4 }}>
-          <Managepayment operation='Add' methods={methods} />
+          <ManageDepartment operation='Add' methods={methods} />
         </Grid2>
         <Grid2 size={{ xs: 12, md: 8 }}>
-          <paymentData />
+          <DepartmentData />
         </Grid2>
       </Grid2>
     </>
